@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Maria-Niki Chatzantoni | Bioinformatics</title>
+    <title>Maria Niki Chatzantoni | Bioinformatics</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Syne:wght@600;700;800&family=DM+Mono:wght@500&display=swap" rel="stylesheet"/>
     
@@ -24,13 +24,13 @@
 
         body {
             font-family: 'Syne', sans-serif;
-            font-weight: 600; /* Thicker font throughout */
+            font-weight: 600;
             background: var(--pastel-yellow);
             color: var(--text-color);
             line-height: 1.6;
         }
 
-        /* ── HERO (Yellow & Pink Style) ── */
+        /* ── HERO ── */
         .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--hotpink); }
         .hero-left {
             background: var(--pastel-yellow);
@@ -63,17 +63,17 @@
         .section-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 3.5rem; color: var(--text-color); line-height: 1.1; }
         .section-title em { font-style: italic; color: var(--hotpink); }
 
-        /* ── PROJECTS (Yellow & Pink Cards) ── */
+        /* ── PROJECTS ── */
         .project-card { background: var(--white); border: 2px solid var(--pastel-yellow); border-radius: 12px; padding: 48px; margin-bottom: 32px; display: grid; grid-template-columns: 1fr 80px; gap: 32px; transition: 0.3s; }
         .project-card:hover { border-color: var(--hotpink); transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
         .project-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.8rem; margin-bottom: 16px; color: var(--text-color); }
-        .tech-badge { background: var(--pastel-yellow); color: var(--hotpink); padding: 6px 14px; border-radius: 4px; font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 700; margin-right: 8px; border: 1px solid var(--yellow-deep); }
+        .tech-badge { background: var(--pastel-yellow); color: var(--hotpink); padding: 6px 14px; border-radius: 4px; font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 700; margin-right: 8px; margin-bottom: 8px; display: inline-block; border: 1px solid var(--yellow-deep); }
         .project-desc { font-size: 1rem; color: var(--text-soft); }
         .project-desc ul { margin-top: 16px; padding-left: 20px; }
         .project-desc li { margin-bottom: 8px; }
         .project-number { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 700; color: var(--hotpink); opacity: 0.15; }
 
-        /* ── RESEARCH OOMPH ── */
+        /* ── RESEARCH ── */
         #experience { background: var(--white); }
         .timeline-item { position: relative; padding-left: 48px; border-left: 4px solid var(--hotpink); margin-bottom: 64px; }
         .timeline-date { font-family: 'DM Mono', monospace; color: var(--hotpink); font-size: 0.95rem; margin-bottom: 8px; display: block; }
@@ -103,14 +103,14 @@
 <section class="hero">
     <div class="hero-left">
         <p class="hero-label">Portfolio &nbsp;/&nbsp; Bioinformatics</p>
-        <h1 class="hero-name">Maria-Niki<br>Chatzantoni</h1>
-        <p class="hero-title">MSc Bioinformatics &mdash; Lund University</p>
+        <h1 class="hero-name">Maria Niki<br>Chatzantoni</h1>
+        <p class="hero-title">MSc Bioinformatics Student &amp; Computational Biologist</p>
         <p class="hero-desc">
-            Bridging computational biology and genomics &mdash; from ancient DNA to spatial transcriptomics and cancer research.
+            Based at Lund University with experience in genomics, bioinformatics pipelines, and data-driven biological analysis. Strong foundation bridging both computational and experimental biology.
         </p>
         <div class="hero-links">
-            <a href="https://www.linkedin.com/in/maria-niki-chatzantoni-313214357/" class="btn btn-primary">LinkedIn</a>
-            <a href="https://github.com/marianikichatz" class="btn btn-outline">GitHub</a>
+            <a href="https://www.linkedin.com/in/maria-niki-chatzantoni-313214357/" class="btn btn-primary" target="_blank">LinkedIn</a>
+            <a href="https://github.com/marianikichatz" class="btn btn-outline" target="_blank">GitHub</a>
         </div>
     </div>
     <div class="hero-right">
@@ -126,21 +126,20 @@
     <div class="section-inner">
         <div class="section-header">
             <span class="section-tag">Development</span>
-            <h2 class="section-title">Selected <em>Projects</em></h2>
+            <h2 class="section-title">Bioinformatics <em>Projects</em></h2>
         </div>
 
         <div class="project-card">
             <div>
                 <div class="project-title">Ancient IBD Visualization Platform</div>
                 <div style="margin-bottom: 20px;">
-                    <span class="tech-badge">Python</span><span class="tech-badge">SQLite</span><span class="tech-badge">Streamlit</span><span class="tech-badge">Circos</span>
+                    <span class="tech-badge">Python</span><span class="tech-badge">SQLite</span><span class="tech-badge">Streamlit</span>
                 </div>
                 <div class="project-desc">
-                    Interactive platform for Identity-by-Descent analysis at scale.
                     <ul>
-                        <li>Analyzed IBD patterns across 4,000+ ancient individuals.</li>
-                        <li>Built high-performance pipelines for integrating large genomic datasets.</li>
-                        <li>Developed a custom database querying system with Circos visualizations.</li>
+                        <li>Developed an interactive application for Identity-by-Descent (IBD) analysis across 4,000+ genomes.</li>
+                        <li>Built pipelines for parsing and integrating genomic datasets.</li>
+                        <li>Created circos visualizations and a custom database querying system.</li>
                     </ul>
                 </div>
             </div>
@@ -154,10 +153,9 @@
                     <span class="tech-badge">hifiasm</span><span class="tech-badge">QUAST</span><span class="tech-badge">BUSCO</span>
                 </div>
                 <div class="project-desc">
-                    End-to-end long-read genome assembly workflow.
                     <ul>
-                        <li>Performed long-read assembly of complex genomes using hifiasm.</li>
-                        <li>Validated assembly completeness and quality with QUAST/BUSCO.</li>
+                        <li>Performed long-read genome assembly using hifiasm.</li>
+                        <li>Evaluated assembly completeness and quality with QUAST and BUSCO.</li>
                     </ul>
                 </div>
             </div>
@@ -166,15 +164,14 @@
 
         <div class="project-card">
             <div>
-                <div class="project-title">Population Genomics (DXY) Pipeline</div>
+                <div class="project-title">Population Genomics Pipeline</div>
                 <div style="margin-bottom: 20px;">
-                    <span class="tech-badge">VCFtools</span><span class="tech-badge">pixy</span><span class="tech-badge">R</span>
+                    <span class="tech-badge">VCFtools</span><span class="tech-badge">pixy</span><span class="tech-badge">DXY</span><span class="tech-badge">R</span>
                 </div>
                 <div class="project-desc">
-                    Divergence and population structure analysis.
                     <ul>
-                        <li>Processed VCF data to calculate divergence statistics via pixy.</li>
-                        <li>Visualized genomic differentiation patterns in R.</li>
+                        <li>Processed VCF data and calculated divergence statistics using pixy.</li>
+                        <li>Visualized genomic patterns and population structure in R.</li>
                     </ul>
                 </div>
             </div>
@@ -183,15 +180,14 @@
 
         <div class="project-card">
             <div>
-                <div class="project-title">Phylogenomics Pipeline</div>
+                <div class="project-title">Comparative Genomics &amp; Phylogenomics</div>
                 <div style="margin-bottom: 20px;">
-                    <span class="tech-badge">RAxML</span><span class="tech-badge">GeneMark</span><span class="tech-badge">ProteinOrtho</span>
+                    <span class="tech-badge">GeneMark</span><span class="tech-badge">ProteinOrtho</span><span class="tech-badge">RAxML</span>
                 </div>
                 <div class="project-desc">
-                    Multi-species comparative analysis.
                     <ul>
-                        <li>Gene prediction and orthology detection for phylogenomic trees.</li>
-                        <li>Reconstructed large-scale evolutionary relationships using RAxML.</li>
+                        <li>Executed gene prediction using GeneMark and detected orthology via ProteinOrtho.</li>
+                        <li>Conducted advanced phylogenetic analysis using RAxML.</li>
                     </ul>
                 </div>
             </div>
@@ -209,23 +205,34 @@
 
         <div class="timeline-item">
             <span class="timeline-date">2026 – PRESENT</span>
-            <span class="timeline-role">Spatial Transcriptomics in Cancer</span>
-            <span class="timeline-place">Lund University (MSc Project)</span>
+            <span class="timeline-role">MSc Research Project – Spatial Transcriptomics</span>
+            <span class="timeline-place">Lund University</span>
             <ul class="research-list">
-                <li><strong>Analyzed</strong> Xenium platform data to map complex tumor microenvironments.</li>
-                <li><strong>Integrated</strong> spatial data with histological imaging using QuPath tools.</li>
-                <li><strong>Designed</strong> analysis pipelines in R and Python for immune cell interactions.</li>
+                <li><strong>Analyze</strong> spatial transcriptomics data utilizing the Xenium platform.</li>
+                <li><strong>Study</strong> tumor microenvironments and immune cell interactions.</li>
+                <li><strong>Integrate</strong> spatial data with histological imaging using QuPath, with analysis pipelines in R and Python.</li>
             </ul>
         </div>
 
         <div class="timeline-item">
             <span class="timeline-date">2024</span>
-            <span class="timeline-role">BSc Thesis — Sickle Cell Disease</span>
+            <span class="timeline-role">BSc Thesis – Sickle Cell Disease</span>
             <span class="timeline-place">University of Patras</span>
             <ul class="research-list">
-                <li><strong>Investigated</strong> red blood cell subpopulations using flow cytometry.</li>
-                <li><strong>Quantified</strong> oxidative stress and hemolysis phenotypes across clinical cohorts.</li>
-                <li><strong>Modelled</strong> physiological data using advanced statistical analysis.</li>
+                <li><strong>Investigated</strong> physiological differences between red blood cell subpopulations, focusing on variations in cell density and mitochondrial load.</li>
+                <li><strong>Identified</strong> higher hemolysis and oxidative stress in samples due to HbS polymerization.</li>
+                <li><strong>Established</strong> positive correlation between mitochondrial content, oxidative damage, and osmotic fragility.</li>
+            </ul>
+        </div>
+
+        <div class="timeline-item">
+            <span class="timeline-date">RESEARCH CONTRIBUTIONS</span>
+            <span class="timeline-role">Scientific Presentations &amp; Posters</span>
+            <span class="timeline-place">Multiple Conferences</span>
+            <ul class="research-list">
+                <li><strong>Proteasome Activity:</strong> Poster on its role in RBC physiology and redox status (74th HSBMB).</li>
+                <li><strong>Intracellular Calcium:</strong> Poster on calcium regulation influencing resilience to corpuscular and redox stress (75th HSBMB).</li>
+                <li><strong>Oxidative Phenotypes &amp; Hypoxia:</strong> Contributed to oral research on sickle cell oxidative phenotypes and hypoxic storage impact (36th Panhellenic Hematology Conference).</li>
             </ul>
         </div>
     </div>
@@ -235,28 +242,46 @@
     <div class="section-inner">
         <div class="section-header">
             <span class="section-tag">Background</span>
-            <h2 class="section-title">Education & <em>Certs</em></h2>
+            <h2 class="section-title">Education &amp; <em>Certs</em></h2>
         </div>
         <div class="edu-grid">
             <div class="edu-card">
                 <span class="timeline-date">SWEDEN</span>
                 <div class="edu-school">Lund University</div>
-                <div style="font-weight: 800;">MSc Bioinformatics (2025–Present)</div>
+                <div style="font-weight: 800; font-size: 1.1rem; margin-top: 8px;">MSc Bioinformatics (2025–Present)</div>
             </div>
             <div class="edu-card">
                 <span class="timeline-date">GREECE</span>
                 <div class="edu-school">University of Patras</div>
-                <div style="font-weight: 800;">BSc Biology (2020–2024)</div>
+                <div style="font-weight: 800; font-size: 1.1rem; margin-top: 8px;">BSc Biology (2020–2024)</div>
             </div>
         </div>
         
         <div style="margin-top: 50px;">
-            <p style="font-family: 'DM Mono'; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">Skills & Certifications</p>
-            <span class="cert-chip">Python / R / Bash</span>
-            <span class="cert-chip">Snakemake / Git</span>
-            <span class="cert-chip">Statistics with R — edX</span>
-            <span class="cert-chip">IELTS Academic 8.0</span>
+            <p style="font-family: 'DM Mono'; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">Certifications</p>
+            <span class="cert-chip">edX Statistics with R</span>
+            <span class="cert-chip">Intro to Python (8 ECTS)</span>
+            <span class="cert-chip">Pedagogical &amp; Teaching Competence</span>
+            <span class="cert-chip">IELTS Academic (8.0)</span>
             <span class="cert-chip">German B1–B2</span>
+        </div>
+    </div>
+</section>
+
+<section id="conferences">
+    <div class="section-inner">
+        <h2 class="section-title" style="margin-bottom: 40px;">Selected <em>Conferences</em></h2>
+        <div class="project-card" style="padding: 32px; gap: 16px; margin-bottom: 16px; border-radius: 8px;">
+            <div style="font-size: 1.1rem;"><strong>30th European Hematology Association (EHA) Congress, Milan</strong></div>
+        </div>
+        <div class="project-card" style="padding: 32px; gap: 16px; margin-bottom: 16px; border-radius: 8px;">
+            <div style="font-size: 1.1rem;"><strong>72nd, 74th &amp; 75th Panhellenic Conferences — HSBMB</strong></div>
+        </div>
+        <div class="project-card" style="padding: 32px; gap: 16px; margin-bottom: 16px; border-radius: 8px;">
+            <div style="font-size: 1.1rem;"><strong>35th &amp; 36th Panhellenic Hematology Conferences</strong></div>
+        </div>
+        <div class="project-card" style="padding: 32px; gap: 16px; margin-bottom: 16px; border-radius: 8px;">
+            <div style="font-size: 1.1rem;"><strong>13th Hematology Seminar — Medical Society of Athens</strong></div>
         </div>
     </div>
 </section>
@@ -265,7 +290,7 @@
     <h2>Let's <em>Connect</em></h2>
     <p style="font-size: 1.2rem; margin-bottom: 40px;">Open to bioinformatics research and collaborations.</p>
     <a href="mailto:marianikixatz@gmail.com" class="btn footer-link">marianikixatz@gmail.com</a>
-    <div class="footer-copy">MARIA-NIKI CHATZANTONI &bull; LUND, SWEDEN &bull; 2026</div>
+    <div class="footer-copy">MARIA NIKI CHATZANTONI &bull; LUND, SWEDEN &bull; 2026</div>
 </footer>
 
 </body>
