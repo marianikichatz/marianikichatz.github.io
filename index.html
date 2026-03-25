@@ -34,35 +34,20 @@
         /* Ensure links don't turn default blue */
         a { text-decoration: none; color: inherit; }
 
-        /* ── HERO & ANIMATION ── */
-        .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--hotpink); position: relative; overflow: hidden; }
-        
-        /* Floating Biology Animation */
-        .bio-anim-bg { position: absolute; top: 0; left: 0; width: 50%; height: 100%; pointer-events: none; overflow: hidden; z-index: 0; }
-        .hero-left > * { position: relative; z-index: 1; }
-        
-        .bio-cell { position: absolute; border: 2px solid rgba(240, 45, 110, 0.15); border-radius: 50%; animation: float 12s infinite ease-in-out alternate; }
-        .cell-1 { width: 120px; height: 120px; top: -20px; left: 10%; animation-duration: 14s; }
-        .cell-2 { width: 200px; height: 200px; bottom: -40px; right: -40px; animation-duration: 18s; animation-delay: -5s; border-width: 3px; opacity: 0.6; }
-        .cell-3 { width: 40px; height: 40px; top: 40%; left: 80%; animation-duration: 9s; background: rgba(240, 45, 110, 0.05); }
-        
-        .dna-strand { position: absolute; top: 25%; left: 40%; width: 100px; opacity: 0.08; color: var(--hotpink); animation: spin-float 25s infinite linear; }
-        
-        @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(20px, -30px) scale(1.05); } }
-        @keyframes spin-float { 0% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(-20px, -20px) rotate(180deg); } 100% { transform: translate(0, 0) rotate(360deg); } }
-
+        /* ── HERO ── */
+        .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--hotpink); }
         .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px; }
         .hero-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--hotpink); margin-bottom: 24px; font-weight: 600; }
         .hero-name { font-family: 'Lora', serif; font-weight: 700; font-size: clamp(3.2rem, 5vw, 5rem); color: var(--hotpink); line-height: 1.05; margin-bottom: 12px; }
         .hero-title { font-family: 'Lora', serif; font-style: italic; font-weight: 600; font-size: 1.5rem; color: var(--text-color); margin-bottom: 32px; }
         .hero-desc { font-size: 1.05rem; color: var(--text-soft); max-width: 440px; margin-bottom: 48px; }
 
-        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 4px; font-size: 0.85rem; font-weight: 800; text-decoration: none; transition: 0.3s; z-index: 2; position: relative; cursor: pointer; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 4px; font-size: 0.85rem; font-weight: 800; text-decoration: none; transition: 0.3s; cursor: pointer; }
         .btn-primary { background: var(--hotpink); color: var(--white); }
         .btn-outline { background: transparent; color: var(--hotpink); border: 2.5px solid var(--hotpink); }
         .btn:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(240, 45, 110, 0.2); }
 
-        .hero-right { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px; border-left: 2px solid var(--hotpink); position: relative; z-index: 1; }
+        .hero-right { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px; border-left: 2px solid var(--hotpink); }
         .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px; }
         .stat-card { background: rgba(240, 45, 110, 0.04); border-radius: 8px; padding: 32px 24px; border: 2px solid var(--hotpink); transition: 0.3s; display: block; text-decoration: none; }
         .stat-card:hover { background: var(--hotpink); transform: translateY(-4px); }
@@ -130,28 +115,12 @@
         footer .footer-link { background: var(--white); color: var(--hotpink); border: none; }
         .footer-copy { margin-top: 80px; font-family: 'DM Mono', monospace; font-size: 0.8rem; opacity: 0.8; }
 
-        @media (max-width: 900px) { .hero { grid-template-columns: 1fr; border-bottom: none; } .bio-anim-bg { width: 100%; height: 50%; } .hero-right { border-left: none; border-top: 2px solid var(--hotpink); } .edu-grid { grid-template-columns: 1fr; } .project-card { grid-template-columns: 1fr; } .project-number { display: none; } }
+        @media (max-width: 900px) { .hero { grid-template-columns: 1fr; border-bottom: none; } .hero-right { border-left: none; border-top: 2px solid var(--hotpink); } .edu-grid { grid-template-columns: 1fr; } .project-card { grid-template-columns: 1fr; } .project-number { display: none; } }
     </style>
 </head>
 <body>
 
 <section class="hero">
-    <div class="bio-anim-bg">
-        <div class="bio-cell cell-1"></div>
-        <div class="bio-cell cell-2"></div>
-        <div class="bio-cell cell-3"></div>
-        <svg class="dna-strand" viewBox="0 0 100 250" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
-            <path d="M10,10 Q50,60 90,10" />
-            <path d="M10,50 Q50,100 90,50" />
-            <path d="M10,90 Q50,140 90,90" />
-            <path d="M10,130 Q50,180 90,130" />
-            <path d="M10,170 Q50,220 90,170" />
-            <path d="M10,210 Q50,260 90,210" />
-            <line x1="20" y1="20" x2="20" y2="200" opacity="0.5"/>
-            <line x1="80" y1="20" x2="80" y2="200" opacity="0.5"/>
-        </svg>
-    </div>
-
     <div class="hero-left">
         <p class="hero-label">Portfolio &nbsp;/&nbsp; Bioinformatics</p>
         <h1 class="hero-name">Maria Niki<br>Chatzantoni</h1>
