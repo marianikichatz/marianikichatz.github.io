@@ -31,12 +31,39 @@
             line-height: 1.6;
         }
         
-        /* Ensure links don't turn default blue */
         a { text-decoration: none; color: inherit; }
 
-        /* ── HERO ── */
-        .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--hotpink); }
-        .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px; }
+        /* ── HERO & CUTE BIO ANIMATION ── */
+        .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--hotpink); position: relative; overflow: hidden; }
+        
+        .cute-bio-bg { position: absolute; top: 0; left: 0; width: 50%; height: 100%; pointer-events: none; overflow: hidden; z-index: 0; }
+        
+        /* Squishy morphing cells */
+        .blob { position: absolute; background: linear-gradient(135deg, rgba(240, 45, 110, 0.12), rgba(249, 229, 143, 0.4)); animation: morph 10s ease-in-out infinite; }
+        .blob-1 { width: 280px; height: 280px; top: -50px; left: -50px; animation-duration: 12s; }
+        .blob-2 { width: 180px; height: 180px; bottom: 15%; right: 10%; animation-duration: 15s; animation-direction: reverse; background: linear-gradient(135deg, rgba(240, 45, 110, 0.08), rgba(255, 255, 255, 0.6)); }
+        
+        /* Floating vesicles (bubbles) */
+        .vesicle { position: absolute; border: 3px solid rgba(240, 45, 110, 0.15); border-radius: 50%; background: rgba(255, 255, 255, 0.6); animation: floatUp linear infinite; bottom: -100px; }
+        .v-1 { width: 25px; height: 25px; left: 20%; animation-duration: 12s; animation-delay: 0s; }
+        .v-2 { width: 45px; height: 45px; left: 65%; animation-duration: 18s; animation-delay: 4s; border-width: 4px; }
+        .v-3 { width: 15px; height: 15px; left: 80%; animation-duration: 10s; animation-delay: 2s; background: rgba(240, 45, 110, 0.1); }
+        .v-4 { width: 35px; height: 35px; left: 40%; animation-duration: 15s; animation-delay: 7s; }
+
+        /* Keyframes for Organic Movement */
+        @keyframes morph {
+            0%, 100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; transform: translate(0, 0) rotate(0deg); }
+            34% { border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%; transform: translate(15px, -15px) rotate(10deg); }
+            67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; transform: translate(-15px, 15px) rotate(-10deg); }
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.8); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-110vh) scale(1.1); opacity: 0; }
+        }
+
+        .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px; position: relative; z-index: 1; }
         .hero-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--hotpink); margin-bottom: 24px; font-weight: 600; }
         .hero-name { font-family: 'Lora', serif; font-weight: 700; font-size: clamp(3.2rem, 5vw, 5rem); color: var(--hotpink); line-height: 1.05; margin-bottom: 12px; }
         .hero-title { font-family: 'Lora', serif; font-style: italic; font-weight: 600; font-size: 1.5rem; color: var(--text-color); margin-bottom: 32px; }
@@ -47,7 +74,7 @@
         .btn-outline { background: transparent; color: var(--hotpink); border: 2.5px solid var(--hotpink); }
         .btn:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(240, 45, 110, 0.2); }
 
-        .hero-right { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px; border-left: 2px solid var(--hotpink); }
+        .hero-right { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px; border-left: 2px solid var(--hotpink); position: relative; z-index: 1; }
         .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px; }
         .stat-card { background: rgba(240, 45, 110, 0.04); border-radius: 8px; padding: 32px 24px; border: 2px solid var(--hotpink); transition: 0.3s; display: block; text-decoration: none; }
         .stat-card:hover { background: var(--hotpink); transform: translateY(-4px); }
@@ -66,7 +93,7 @@
 
         /* ── SKILLS ── */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
-        .skill-category { background: var(--off-white); border: 2px solid var(--hotpink); border-radius: 12px; padding: 32px; transition: 0.3s; display: block; }
+        .skill-category { background: var(--off-white); border: 2px solid var(--hotpink); border-radius: 12px; padding: 32px; transition: 0.3s; display: block; text-decoration: none; color: inherit; cursor: pointer; }
         .skill-category:hover { background: var(--white); transform: scale(1.02); box-shadow: 0 10px 20px rgba(240, 45, 110, 0.1); }
         .skill-cat-title { font-family: 'Lora', serif; font-weight: 700; font-size: 1.6rem; color: var(--hotpink); margin-bottom: 20px; }
 
@@ -96,7 +123,7 @@
         .research-list li::before { content: '→'; position: absolute; left: 0; color: var(--hotpink); font-weight: 900; }
         .research-list strong { color: var(--hotpink); font-weight: 800; letter-spacing: 0.3px; }
 
-        /* ── EDUCATION & SKILLS ── */
+        /* ── EDUCATION & CERTS ── */
         .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
         .edu-card { background: var(--off-white); padding: 40px; border-radius: 8px; border: 2px solid var(--hotpink); display: block; transition: 0.3s; text-decoration: none; color: inherit; cursor: pointer; }
         .edu-card:hover { background: var(--white); transform: translateY(-4px); box-shadow: 0 10px 20px rgba(240, 45, 110, 0.1); }
@@ -115,12 +142,21 @@
         footer .footer-link { background: var(--white); color: var(--hotpink); border: none; }
         .footer-copy { margin-top: 80px; font-family: 'DM Mono', monospace; font-size: 0.8rem; opacity: 0.8; }
 
-        @media (max-width: 900px) { .hero { grid-template-columns: 1fr; border-bottom: none; } .hero-right { border-left: none; border-top: 2px solid var(--hotpink); } .edu-grid { grid-template-columns: 1fr; } .project-card { grid-template-columns: 1fr; } .project-number { display: none; } }
+        @media (max-width: 900px) { .hero { grid-template-columns: 1fr; border-bottom: none; } .bio-anim-bg { width: 100%; height: 50%; } .hero-right { border-left: none; border-top: 2px solid var(--hotpink); } .edu-grid { grid-template-columns: 1fr; } .project-card { grid-template-columns: 1fr; } .project-number { display: none; } }
     </style>
 </head>
 <body>
 
 <section class="hero">
+    <div class="cute-bio-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="vesicle v-1"></div>
+        <div class="vesicle v-2"></div>
+        <div class="vesicle v-3"></div>
+        <div class="vesicle v-4"></div>
+    </div>
+
     <div class="hero-left">
         <p class="hero-label">Portfolio &nbsp;/&nbsp; Bioinformatics</p>
         <h1 class="hero-name">Maria Niki<br>Chatzantoni</h1>
