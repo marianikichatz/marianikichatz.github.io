@@ -16,7 +16,7 @@
             --text-color: #1a1520;
             --text-soft: #3a3440;
             --white: #ffffff;
-            --off-white: #fdfaf6; /* Warm, elegant off-white for the cards */
+            --off-white: #fdfaf6;
             --border: rgba(240, 45, 110, 0.2);
         }
 
@@ -30,33 +30,45 @@
             color: var(--text-color);
             line-height: 1.6;
         }
+        
+        /* Ensure links don't turn default blue */
+        a { text-decoration: none; color: inherit; }
 
-        /* ── HERO ── */
-        .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--hotpink); }
-        .hero-left {
-            display: flex; flex-direction: column; justify-content: center; padding: 80px 64px;
-        }
+        /* ── HERO & ANIMATION ── */
+        .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--hotpink); position: relative; overflow: hidden; }
+        
+        /* Floating Biology Animation */
+        .bio-anim-bg { position: absolute; top: 0; left: 0; width: 50%; height: 100%; pointer-events: none; overflow: hidden; z-index: 0; }
+        .hero-left > * { position: relative; z-index: 1; }
+        
+        .bio-cell { position: absolute; border: 2px solid rgba(240, 45, 110, 0.15); border-radius: 50%; animation: float 12s infinite ease-in-out alternate; }
+        .cell-1 { width: 120px; height: 120px; top: -20px; left: 10%; animation-duration: 14s; }
+        .cell-2 { width: 200px; height: 200px; bottom: -40px; right: -40px; animation-duration: 18s; animation-delay: -5s; border-width: 3px; opacity: 0.6; }
+        .cell-3 { width: 40px; height: 40px; top: 40%; left: 80%; animation-duration: 9s; background: rgba(240, 45, 110, 0.05); }
+        
+        .dna-strand { position: absolute; top: 25%; left: 40%; width: 100px; opacity: 0.08; color: var(--hotpink); animation: spin-float 25s infinite linear; }
+        
+        @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(20px, -30px) scale(1.05); } }
+        @keyframes spin-float { 0% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(-20px, -20px) rotate(180deg); } 100% { transform: translate(0, 0) rotate(360deg); } }
 
+        .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px; }
         .hero-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--hotpink); margin-bottom: 24px; font-weight: 600; }
         .hero-name { font-family: 'Lora', serif; font-weight: 700; font-size: clamp(3.2rem, 5vw, 5rem); color: var(--hotpink); line-height: 1.05; margin-bottom: 12px; }
         .hero-title { font-family: 'Lora', serif; font-style: italic; font-weight: 600; font-size: 1.5rem; color: var(--text-color); margin-bottom: 32px; }
         .hero-desc { font-size: 1.05rem; color: var(--text-soft); max-width: 440px; margin-bottom: 48px; }
 
-        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 4px; font-size: 0.85rem; font-weight: 800; text-decoration: none; transition: 0.3s; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 4px; font-size: 0.85rem; font-weight: 800; text-decoration: none; transition: 0.3s; z-index: 2; position: relative; cursor: pointer; }
         .btn-primary { background: var(--hotpink); color: var(--white); }
         .btn-outline { background: transparent; color: var(--hotpink); border: 2.5px solid var(--hotpink); }
         .btn:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(240, 45, 110, 0.2); }
 
-        .hero-right { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px; border-left: 2px solid var(--hotpink); }
+        .hero-right { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px; border-left: 2px solid var(--hotpink); position: relative; z-index: 1; }
         .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px; }
-        
-        /* Stat Cards */
-        .stat-card { background: var(--off-white); border-radius: 8px; padding: 32px 24px; border: 2px solid var(--hotpink); transition: 0.3s; }
+        .stat-card { background: rgba(240, 45, 110, 0.04); border-radius: 8px; padding: 32px 24px; border: 2px solid var(--hotpink); transition: 0.3s; display: block; text-decoration: none; }
         .stat-card:hover { background: var(--hotpink); transform: translateY(-4px); }
         .stat-card:hover .stat-num, .stat-card:hover .stat-label { color: var(--white); }
         .stat-num { font-family: 'Lora', serif; font-weight: 700; font-size: 3rem; color: var(--hotpink); line-height: 1; transition: 0.3s; margin-bottom: 8px; }
         .stat-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--text-color); transition: 0.3s; }
-        
         .location-pill { display: inline-flex; align-items: center; background: var(--hotpink); color: var(--white); padding: 12px 24px; border-radius: 50px; font-family: 'DM Mono', monospace; font-size: 0.85rem; font-weight: 600; align-self: flex-start; }
 
         /* ── SECTIONS ── */
@@ -69,14 +81,17 @@
 
         /* ── SKILLS ── */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
-        .skill-category { background: var(--off-white); border: 2px solid var(--hotpink); border-radius: 12px; padding: 32px; transition: 0.3s; }
+        .skill-category { background: var(--off-white); border: 2px solid var(--hotpink); border-radius: 12px; padding: 32px; transition: 0.3s; display: block; }
         .skill-category:hover { background: var(--white); transform: scale(1.02); box-shadow: 0 10px 20px rgba(240, 45, 110, 0.1); }
         .skill-cat-title { font-family: 'Lora', serif; font-weight: 700; font-size: 1.6rem; color: var(--hotpink); margin-bottom: 20px; }
 
         /* ── PROJECTS ── */
-        .project-card { background: var(--off-white); border: 2px solid var(--hotpink); border-radius: 12px; padding: 48px; margin-bottom: 32px; display: grid; grid-template-columns: 1fr 80px; gap: 32px; transition: 0.3s; }
-        .project-card:hover { background: var(--white); transform: scale(1.02); box-shadow: 0 15px 30px rgba(240, 45, 110, 0.1); }
-        .project-title { font-family: 'Lora', serif; font-weight: 700; font-size: 1.8rem; margin-bottom: 16px; color: var(--text-color); }
+        .project-card { background: var(--off-white); border: 2px solid var(--hotpink); border-radius: 12px; padding: 48px; margin-bottom: 32px; display: grid; grid-template-columns: 1fr 80px; gap: 32px; transition: 0.3s; text-decoration: none; color: inherit; position: relative; overflow: hidden; }
+        .project-card:hover { background: var(--white); transform: scale(1.02); box-shadow: 0 15px 30px rgba(240, 45, 110, 0.1); border-color: var(--hotpink-dk); cursor: pointer; }
+        .project-title { font-family: 'Lora', serif; font-weight: 700; font-size: 1.8rem; margin-bottom: 16px; color: var(--text-color); display: flex; align-items: center; gap: 10px; transition: 0.3s; }
+        .project-card:hover .project-title { color: var(--hotpink); }
+        .project-title::after { content: '↗'; font-family: sans-serif; opacity: 0; transform: translateX(-10px); transition: 0.3s; font-size: 1.5rem; }
+        .project-card:hover .project-title::after { opacity: 1; transform: translateX(0); }
         .tech-badge { background: var(--pastel-yellow); color: var(--hotpink); padding: 6px 14px; border-radius: 4px; font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 700; margin-right: 8px; margin-bottom: 8px; display: inline-block; border: 1.5px solid var(--hotpink); }
         .project-desc { font-size: 1.05rem; color: var(--text-soft); }
         .project-desc ul { margin-top: 16px; padding-left: 20px; }
@@ -84,9 +99,12 @@
         .project-number { font-family: 'Lora', serif; font-size: 4rem; font-weight: 700; color: var(--hotpink); opacity: 0.2; }
 
         /* ── RESEARCH ── */
-        .timeline-item { position: relative; padding-left: 48px; border-left: 4px solid var(--hotpink); margin-bottom: 64px; }
+        .timeline-item { display: block; position: relative; padding-left: 48px; border-left: 4px solid var(--hotpink); margin-bottom: 64px; text-decoration: none; color: inherit; transition: 0.3s; cursor: pointer; }
+        .timeline-item:hover { border-left-width: 8px; background: linear-gradient(90deg, rgba(240, 45, 110, 0.05) 0%, transparent 100%); padding-top: 10px; padding-bottom: 10px; border-radius: 0 12px 12px 0; }
+        .timeline-item:hover .timeline-role { color: var(--hotpink); }
         .timeline-date { font-family: 'DM Mono', monospace; color: var(--hotpink); font-size: 0.95rem; margin-bottom: 8px; display: block; font-weight: 600; }
-        .timeline-role { font-family: 'Lora', serif; font-weight: 700; font-size: 1.8rem; color: var(--text-color); margin-bottom: 6px; }
+        .timeline-role { font-family: 'Lora', serif; font-weight: 700; font-size: 1.8rem; color: var(--text-color); margin-bottom: 6px; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; }
+        .timeline-item:hover .timeline-role::after { content: '↗'; font-family: sans-serif; font-size: 1.4rem; }
         .timeline-place { font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-soft); margin-bottom: 24px; display: block; }
         .research-list { list-style: none; }
         .research-list li { margin-bottom: 16px; padding-left: 28px; position: relative; font-size: 1.05rem; }
@@ -95,13 +113,16 @@
 
         /* ── EDUCATION & SKILLS ── */
         .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-        .edu-card { background: var(--off-white); padding: 40px; border-radius: 8px; border: 2px solid var(--hotpink); }
-        .edu-school { font-family: 'Lora', serif; font-weight: 700; font-size: 1.6rem; margin-top: 8px; }
-        .cert-chip { background: var(--hotpink); color: var(--white); padding: 10px 20px; border-radius: 4px; display: inline-block; margin: 6px; font-size: 0.85rem; font-weight: 700; }
+        .edu-card { background: var(--off-white); padding: 40px; border-radius: 8px; border: 2px solid var(--hotpink); display: block; transition: 0.3s; text-decoration: none; color: inherit; cursor: pointer; }
+        .edu-card:hover { background: var(--white); transform: translateY(-4px); box-shadow: 0 10px 20px rgba(240, 45, 110, 0.1); }
+        .edu-school { font-family: 'Lora', serif; font-weight: 700; font-size: 1.6rem; margin-top: 8px; transition: 0.3s; }
+        .edu-card:hover .edu-school { color: var(--hotpink); }
+        .cert-chip { background: var(--hotpink); color: var(--white); padding: 10px 20px; border-radius: 4px; display: inline-block; margin: 6px; font-size: 0.85rem; font-weight: 700; transition: 0.3s; cursor: pointer; }
+        .cert-chip:hover { transform: scale(1.05); background: var(--hotpink-dk); }
 
         /* ── CONFERENCES ── */
-        .conf-card { background: var(--off-white); padding: 32px; margin-bottom: 16px; border-radius: 8px; border: 2px solid var(--hotpink); font-size: 1.1rem; transition: 0.3s; }
-        .conf-card:hover { background: var(--white); transform: translateX(8px); }
+        .conf-card { display: block; background: var(--off-white); padding: 32px; margin-bottom: 16px; border-radius: 8px; border: 2px solid var(--hotpink); font-size: 1.1rem; transition: 0.3s; text-decoration: none; color: inherit; cursor: pointer; }
+        .conf-card:hover { background: var(--white); transform: translateX(8px); color: var(--hotpink); box-shadow: 0 5px 15px rgba(240, 45, 110, 0.1); }
 
         /* ── FOOTER ── */
         footer { background: var(--hotpink); color: var(--white); text-align: center; padding: 120px 48px; }
@@ -109,12 +130,28 @@
         footer .footer-link { background: var(--white); color: var(--hotpink); border: none; }
         .footer-copy { margin-top: 80px; font-family: 'DM Mono', monospace; font-size: 0.8rem; opacity: 0.8; }
 
-        @media (max-width: 900px) { .hero { grid-template-columns: 1fr; border-bottom: none; } .hero-right { border-left: none; border-top: 2px solid var(--hotpink); } .edu-grid { grid-template-columns: 1fr; } .project-card { grid-template-columns: 1fr; } }
+        @media (max-width: 900px) { .hero { grid-template-columns: 1fr; border-bottom: none; } .bio-anim-bg { width: 100%; height: 50%; } .hero-right { border-left: none; border-top: 2px solid var(--hotpink); } .edu-grid { grid-template-columns: 1fr; } .project-card { grid-template-columns: 1fr; } .project-number { display: none; } }
     </style>
 </head>
 <body>
 
 <section class="hero">
+    <div class="bio-anim-bg">
+        <div class="bio-cell cell-1"></div>
+        <div class="bio-cell cell-2"></div>
+        <div class="bio-cell cell-3"></div>
+        <svg class="dna-strand" viewBox="0 0 100 250" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+            <path d="M10,10 Q50,60 90,10" />
+            <path d="M10,50 Q50,100 90,50" />
+            <path d="M10,90 Q50,140 90,90" />
+            <path d="M10,130 Q50,180 90,130" />
+            <path d="M10,170 Q50,220 90,170" />
+            <path d="M10,210 Q50,260 90,210" />
+            <line x1="20" y1="20" x2="20" y2="200" opacity="0.5"/>
+            <line x1="80" y1="20" x2="80" y2="200" opacity="0.5"/>
+        </svg>
+    </div>
+
     <div class="hero-left">
         <p class="hero-label">Portfolio &nbsp;/&nbsp; Bioinformatics</p>
         <h1 class="hero-name">Maria Niki<br>Chatzantoni</h1>
@@ -129,14 +166,14 @@
     </div>
     <div class="hero-right">
         <div class="stats-grid">
-            <div class="stat-card">
+            <a href="#projects" class="stat-card">
                 <div class="stat-num">4+</div>
                 <div class="stat-label">Core Projects</div>
-            </div>
-            <div class="stat-card">
+            </a>
+            <a href="#conferences" class="stat-card">
                 <div class="stat-num">5</div>
                 <div class="stat-label">Conferences</div>
-            </div>
+            </a>
         </div>
         <div class="location-pill">LUND, SWEDEN &rarr;</div>
     </div>
@@ -149,30 +186,30 @@
             <h2 class="section-title">Technical <em>Skills</em></h2>
         </div>
         <div class="skills-grid">
-            <div class="skill-category">
+            <a href="#" class="skill-category">
                 <div class="skill-cat-title">Programming</div>
                 <div>
                     <span class="tech-badge">Python</span><span class="tech-badge">R</span><span class="tech-badge">Bash</span>
                 </div>
-            </div>
-            <div class="skill-category">
+            </a>
+            <a href="#" class="skill-category">
                 <div class="skill-cat-title">Bioinformatics</div>
                 <div>
                     <span class="tech-badge">hifiasm</span><span class="tech-badge">BUSCO</span><span class="tech-badge">QUAST</span><span class="tech-badge">GeneMark</span><span class="tech-badge">ProteinOrtho</span><span class="tech-badge">VCFtools</span><span class="tech-badge">pixy</span><span class="tech-badge">RAxML</span><span class="tech-badge">MAFFT</span>
                 </div>
-            </div>
-            <div class="skill-category">
+            </a>
+            <a href="#" class="skill-category">
                 <div class="skill-cat-title">Data &amp; Viz</div>
                 <div>
                     <span class="tech-badge">pandas</span><span class="tech-badge">numpy</span><span class="tech-badge">matplotlib</span><span class="tech-badge">Streamlit</span><span class="tech-badge">circos plots</span>
                 </div>
-            </div>
-            <div class="skill-category">
+            </a>
+            <a href="#" class="skill-category">
                 <div class="skill-cat-title">Workflow</div>
                 <div>
-                    <span class="tech-badge">Snakemake</span><span class="tech-badge">Git</span><span class="tech-badge">GitHub</span><span class="tech-badge">Linux/Unix</span>
+                    <span class="tech-badge">Conda</span><span class="tech-badge">Snakemake</span><span class="tech-badge">Git</span><span class="tech-badge">GitHub</span><span class="tech-badge">Linux/Unix</span>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </section>
@@ -184,7 +221,7 @@
             <h2 class="section-title">Bioinformatics <em>Projects</em></h2>
         </div>
 
-        <div class="project-card">
+        <a href="https://github.com/marianikichatz" target="_blank" class="project-card">
             <div>
                 <div class="project-title">Ancient IBD Visualization Platform</div>
                 <div style="margin-bottom: 20px;">
@@ -199,9 +236,9 @@
                 </div>
             </div>
             <div class="project-number">01</div>
-        </div>
+        </a>
 
-        <div class="project-card">
+        <a href="https://github.com/marianikichatz" target="_blank" class="project-card">
             <div>
                 <div class="project-title">De Novo Genome Assembly Pipeline</div>
                 <div style="margin-bottom: 20px;">
@@ -215,9 +252,9 @@
                 </div>
             </div>
             <div class="project-number">02</div>
-        </div>
+        </a>
 
-        <div class="project-card">
+        <a href="https://github.com/marianikichatz" target="_blank" class="project-card">
             <div>
                 <div class="project-title">Population Genomics Pipeline</div>
                 <div style="margin-bottom: 20px;">
@@ -231,9 +268,9 @@
                 </div>
             </div>
             <div class="project-number">03</div>
-        </div>
+        </a>
 
-        <div class="project-card">
+        <a href="https://github.com/marianikichatz" target="_blank" class="project-card">
             <div>
                 <div class="project-title">Comparative Genomics &amp; Phylogenomics</div>
                 <div style="margin-bottom: 20px;">
@@ -247,7 +284,7 @@
                 </div>
             </div>
             <div class="project-number">04</div>
-        </div>
+        </a>
     </div>
 </section>
 
@@ -258,7 +295,7 @@
             <h2 class="section-title">Academic <em>Experience</em></h2>
         </div>
 
-        <div class="timeline-item">
+        <a href="#" class="timeline-item">
             <span class="timeline-date">2026 – PRESENT</span>
             <span class="timeline-role">MSc Research Project – Spatial Transcriptomics</span>
             <span class="timeline-place">Lund University</span>
@@ -267,9 +304,9 @@
                 <li><strong>Study</strong> tumor microenvironments and immune cell interactions.</li>
                 <li><strong>Integrate</strong> spatial data with histological imaging using QuPath, with analysis pipelines in R and Python.</li>
             </ul>
-        </div>
+        </a>
 
-        <div class="timeline-item">
+        <a href="#" class="timeline-item">
             <span class="timeline-date">2024</span>
             <span class="timeline-role">BSc Thesis – Sickle Cell Disease</span>
             <span class="timeline-place">University of Patras</span>
@@ -278,18 +315,19 @@
                 <li><strong>Identified</strong> higher hemolysis and oxidative stress in samples due to HbS polymerization.</li>
                 <li><strong>Established</strong> positive correlation between mitochondrial content, oxidative damage, and osmotic fragility.</li>
             </ul>
-        </div>
+        </a>
 
-        <div class="timeline-item">
+        <a href="#conferences" class="timeline-item">
             <span class="timeline-date">RESEARCH CONTRIBUTIONS</span>
             <span class="timeline-role">Scientific Presentations &amp; Posters</span>
             <span class="timeline-place">Multiple Conferences</span>
             <ul class="research-list">
+                <li><strong>Mitochondrial Retention in Sickle Cell Disease:</strong> Poster on mitochondrial retention mechanisms in sickle cell disease and their connection to disease heterogeneity (30th EHA Congress).</li>
                 <li><strong>Proteasome Activity:</strong> Poster on its role in RBC physiology and redox status (74th HSBMB).</li>
                 <li><strong>Intracellular Calcium:</strong> Poster on calcium regulation influencing resilience to corpuscular and redox stress (75th HSBMB).</li>
-                <li><strong>Oxidative Phenotypes &amp; Hypoxia:</strong> Contributed to oral research on sickle cell oxidative phenotypes and hypoxic storage impact (36th Panhellenic Hematology Conference).</li>
+                <li><strong>Oxidative Phenotypes &amp; Hypoxia:</strong> Contributed to research on sickle cell oxidative phenotypes and the impact of hypoxic storage, which was presented at the 36th Panhellenic Hematology Conference.</li>
             </ul>
-        </div>
+        </a>
     </div>
 </section>
 
@@ -300,16 +338,16 @@
             <h2 class="section-title">Education &amp; <em>Certs</em></h2>
         </div>
         <div class="edu-grid">
-            <div class="edu-card">
+            <a href="#" class="edu-card">
                 <span class="timeline-date">SWEDEN</span>
                 <div class="edu-school">Lund University</div>
                 <div style="font-weight: 800; font-size: 1.1rem; margin-top: 8px;">MSc Bioinformatics (2025–Present)</div>
-            </div>
-            <div class="edu-card">
+            </a>
+            <a href="#" class="edu-card">
                 <span class="timeline-date">GREECE</span>
                 <div class="edu-school">University of Patras</div>
                 <div style="font-weight: 800; font-size: 1.1rem; margin-top: 8px;">BSc Biology (2020–2024)</div>
-            </div>
+            </a>
         </div>
         
         <div style="margin-top: 50px;">
@@ -326,18 +364,18 @@
 <section id="conferences">
     <div class="section-inner">
         <h2 class="section-title" style="margin-bottom: 40px;">Selected <em>Conferences</em></h2>
-        <div class="conf-card">
+        <a href="#" class="conf-card">
             <strong>30th European Hematology Association (EHA) Congress, Milan</strong>
-        </div>
-        <div class="conf-card">
+        </a>
+        <a href="#" class="conf-card">
             <strong>72nd, 74th &amp; 75th Panhellenic Conferences — HSBMB</strong>
-        </div>
-        <div class="conf-card">
+        </a>
+        <a href="#" class="conf-card">
             <strong>35th &amp; 36th Panhellenic Hematology Conferences</strong>
-        </div>
-        <div class="conf-card">
+        </a>
+        <a href="#" class="conf-card">
             <strong>13th Hematology Seminar — Medical Society of Athens</strong>
-        </div>
+        </a>
     </div>
 </section>
 
